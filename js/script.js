@@ -22,7 +22,7 @@ var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.rate); });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select(".chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -32,7 +32,8 @@ d3.csv("data.csv", type, function(error, data) {
   if (error) throw error;
 
   x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain(d3.extent(data, function(d) { return d.rate; }));
+  //y.domain(d3.extent(data, function(d) { return d.rate; }));
+  y.domain([0,7]);
 
   svg.append("g")
       .attr("class", "x axis")
